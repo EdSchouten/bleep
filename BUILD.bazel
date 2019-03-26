@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/EdSchouten/bleep
+gazelle(name = "gazelle")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "github.com/EdSchouten/bleep",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_bazelbuild_bazel_buildfarm//src/main/protobuf/build/buildfarm/v1test:go_default_library"],
+)
+
+go_binary(
+    name = "bleep",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

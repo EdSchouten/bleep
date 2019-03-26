@@ -1,0 +1,10 @@
+--- src/main/protobuf/build/buildfarm/v1test/buildfarm.proto
++++ src/main/protobuf/build/buildfarm/v1test/buildfarm.proto
+@@ -11,6 +11,7 @@ import "google/rpc/status.proto";
+ option java_package = "build.buildfarm.v1test";
+ option java_multiple_files = true;
+ option java_outer_classname = "OperationQueueProto";
++option go_package = "github.com/bazelbuild/bazel-buildfarm/src/main/protobuf/build/buildfarm/v1test";
+ 
+ // The OperationQueue API is used internally to communicate with Workers
+ service OperationQueue {
