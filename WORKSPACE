@@ -12,6 +12,15 @@ http_archive(
     urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/0.17.0/bazel-gazelle-0.17.0.tar.gz"],
 )
 
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "com_github_bazelbuild_bazel_buildfarm",
+    commit = "504559a20da843d947d34e40af59b080ebd2a33a",
+    patches = ["//:go_package.diff"],
+    remote = "https://github.com/bazelbuild/bazel-buildfarm.git",
+)
+
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
@@ -25,9 +34,9 @@ gazelle_dependencies()
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
 go_repository(
-    name = "com_github_bazelbuild_bazel_buildfarm",
-    importpath = "github.com/bazelbuild/bazel-buildfarm",
-    commit = "504559a20da843d947d34e40af59b080ebd2a33a",
-    patches = ["//:go_package.diff"],
-    build_file_generation = "on",
+    name = "com_github_bazelbuild_remote_apis",
+    importpath = "github.com/bazelbuild/remote-apis",
+    sha256 = "99ab1378f10854504c75bcfa43be2129d36bbba8e80a79a4216a3e3026a0985b",
+    strip_prefix = "remote-apis-ed4849810292e5fb3c844992133523f01a4ad420",
+    urls = ["https://github.com/bazelbuild/remote-apis/archive/ed4849810292e5fb3c844992133523f01a4ad420.tar.gz"],
 )
